@@ -1,0 +1,64 @@
+instagram_user_info
+******
+<script type="text/javascript">window._sharedData
+裡面有user資訊欄位
+(ProfilePage.graphql.user)id
+(ProfilePage.graphql.user)full_name: 後面有多餘的亂碼需要delete
+(ProfilePage.graphql.user)username
+url: https://www.instagram.com/ + username + /
+(ProfilePage.graphql.user)is_private: 原本為boolean欄位 需要轉成 false => 0 true => 1
+(ProfilePage.graphql.user)is_verified: 原本為boolean欄位 需要轉成 false => 0 true => 1
+(ProfilePage.graphql.user)profile_pic_url_hd: 高清版本
+(ProfilePage.graphql.user)biography: 可能編碼問題
+(ProfilePage.graphql.user)edge_followed_by
+(ProfilePage.graphql.user)edge_follow
+(ProfilePage.graphql.user.edge_owner_to_timeline_media)count:
+******
+
+instagram_user_post_info
+
+***注意前十二張的發文資料在window._sharedData.ProfilePage.graphql.user裡面*****
+
+https://www.instagram.com/graphql/query/?
+query_hash=f2405b236d85e8296cf30347c9f08c2a&
+variables=%7B%22id%22%3A%22296074766%22%2C%22first%22%3A12%2C%22after%22%3A%22QVFCVDFINGRyUlk2ekhMRllweWtNLVQySWx1NW5xMi1yWmJER3F0NEhNRlZOU2lYOUg4SmhqTjlNWGFYdjk3OFRuSThMeUJFTnRwMnh4UWthU2drcDdGSQ%3D%3D%22%7D
+
+*** query_hash的值每個IG都一樣不須更動 ***
+*** variables裡裡面有三個參數
+=>id: user_id
+=>first:最多能取50個貼文，預設一次取12貼文
+=>after:前一條此api的page_info.end_cursor
+***注意***
+第一條的end_cursor在window._sharedData當作第二條after的值
+***注意***
+在取after之值時，先判斷page_info.has_next_page的值True or False: True=>還有發文資料 False=>沒有發文資料
+
+(shortcode_media)id
+(shortcode_media)shortcode
+url:https://www.instagram.com/p/ + shortcode + /
+(shortcode_media.edge_media_to_caption.node)text: 可能會有編碼問題
+(shortcode_media)location: 如果使用者發文沒有打卡地點，此欄位為null，自然也沒有location_name
+name: location不為null 才有此欄位
+**location架構如下**
+"location":{
+	 "id":"325357972",
+	 "has_public_page":true,
+	 "name":"Nagi\u8c5a\u738b\u62c9\u9eb5-\u897f\u9580\u5e97",
+	 "slug":"nagi-"
+ }
+********************
+taken_at_timestamp: timestamp的形式需轉成年月日 時間
+display_url
+thumbnail_src: display_resources[0].src
+(edge_media_to_comment)count:
+(edge_media_preview_like)count:
+video_view_count: 當is_video 欄位是true時才會出現此欄位
+is_video: 原本為boolean欄位 需要轉成 false => 0 true => 1
+owner_id: 欄位意思為發文者是誰 也就是等於user.id
+
+
+
+
+
+
+
