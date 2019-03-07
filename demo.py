@@ -1,0 +1,14 @@
+from instagram_crawler import InstagramCrawler
+
+# 測試cookie
+# cookie = 'csrftoken=8cFvSiN8T85qMV0U6HKffJBOcrOUQEGj; ds_user_id=7183481074; fbm_124024574287414=base_domain=.instagram.com; fbsr_124024574287414=Cz-aJglbaAlEAZeubXrZtatwe_sR6CkrDCu5xNTnOhA.eyJjb2RlIjoiQVFCMGxzd0t2QkppNENaaTJEeGNoTkt6c0Zicmx5d0RDNVNSUFplWEhXMnROODB1LW5xLV8zSjBiQjRZR3otY2h6clhnTVVlcThiVjA1b0djN0pGSERnZFpIdDJ0TEFES0RScEJlUWc5dXNUY1JXVGQtM3JXSlBwVFY0cHRGWGt5cEI1WmNxXzNEZ1NXTldKUEZmVXdCWEM1LXlqLUt2XzhxdmstYnJsXzhraTFiTFNiT3NkVVRrTUh5NjNRR01wUzV5ekpvVlhDZVVsRzN5LXJOUEFBNkR4djV0enRxLXVXMG12OGg4UDBTaU5jbjVsVzEwWTR3NHhSV3o1bVNpWmMta01DNVFwbk1zLUhSbFc0MHROdS1scFd2dlo4M0pHQlRGZnRhZmx5N2NiTmFnbHFlc3hIc08zY1NOUzZ4R3NBZWVEUlZnVUs2cmM4dzQwdUxOZUdxVEkiLCJ1c2VyX2lkIjoiMTAwMDAzOTYzNTYyODQ5IiwiYWxnb3JpdGhtIjoiSE1BQy1TSEEyNTYiLCJpc3N1ZWRfYXQiOjE1NTE4NjAyNzh9; mid=XH8vBgAEAAGbodglGZDTGglydirv; rur=FTW; sessionid=7183481074%3A9BpYQvkvpXPJ7o%3A25; shbid=16206; shbts=1551844661.6233888; urlgen="{\"60.250.120.123\": 3462}:1h1RnN:11ixi9jUEMkFp-3pXuSThZYzB_A"'
+
+username = input('please input username:')
+cookie = input('please input cookie:')
+
+ig_crawler = InstagramCrawler(username, cookie)
+user = ig_crawler.parse_user()
+user = ig_crawler.parse_posts(user)
+
+
+
