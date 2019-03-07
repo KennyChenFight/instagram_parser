@@ -57,6 +57,18 @@ is_video: 原本為boolean欄位 需要轉成 false => 0 true => 1
 owner_id: 欄位意思為發文者是誰 也就是等於user.id
 
 
+instagram_user_post_comment
+*************
+根據此APi，會變動的地方只有shortcode，此為post的shortcode
+https://www.instagram.com/graphql/query/?query_hash=477b65a610463740ccdb83135b2014db&variables=%7B%22shortcode%22%3A%22Bs77TU7BoD8%22%2C%22child_comment_count%22%3A3%2C%22fetch_comment_count%22%3A40%2C%22parent_comment_count%22%3A24%2C%22has_threaded_comments%22%3Afalse%7D
+
+(edge_media_to_comment.edges.node.owner)id
+(edge_media_to_comment.edges.node.owner)username
+(edge_media_to_comment.edges.node)text
+(edge_media_to_comment.edges.node)create_at
+
+
+
 
 
 
