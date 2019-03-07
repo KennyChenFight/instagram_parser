@@ -43,26 +43,26 @@ class InstagramCrawler:
         posts = self.get_one_loop_posts(edges, user.id)
 
         # 代表貼文超過12篇，每一次循環爬取12篇文
-        # while True:
-        #     global has_next_page
-        #     has_next_page = user.has_next_page
-        #     global end_cursor
-        #     if has_next_page:
-        #         end_cursor = user.end_cursor
-        #         url = self.get_next_post_url(end_cursor, user.id)
-        #         response = self.get_next_post_json_data(url)
-        #         if response is not None:
-        #             response = json.loads(response, encoding='utf-8')
-        #             edges = response['data']['user']['edge_owner_to_timeline_media']['edges']
-        #             next_posts = self.get_one_loop_posts(edges, user.id)
-        #             has_next_page = response['data']['user']['edge_owner_to_timeline_media']['page_info']['has_next_page']
-        #             end_cursor = response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor']
-        #             posts.extend(next_posts)
-        #             time.sleep(random.randint(0, 5))
-        #         else:
-        #             break
-        #     else:
-        #         break
+        while True:
+            global has_next_page
+            has_next_page = user.has_next_page
+            global end_cursor
+            if has_next_page:
+                end_cursor = user.end_cursor
+                url = self.get_next_post_url(end_cursor, user.id)
+                response = self.get_next_post_json_data(url)
+                if response is not None:
+                    response = json.loads(response, encoding='utf-8')
+                    edges = response['data']['user']['edge_owner_to_timeline_media']['edges']
+                    next_posts = self.get_one_loop_posts(edges, user.id)
+                    has_next_page = response['data']['user']['edge_owner_to_timeline_media']['page_info']['has_next_page']
+                    end_cursor = response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor']
+                    posts.extend(next_posts)
+                    time.sleep(random.randint(0, 5))
+                else:
+                    break
+            else:
+                break
         user.posts = posts
         print('貼文全部爬取完畢,共爬取了', len(user.posts), '篇文')
         return user
